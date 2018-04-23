@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MathExtended.ComplexNumbers.cs" />
+    <Compile Include="MathExtended.ComplexNumbers.Functions.cs" />
+    <Compile Include="MathExtended.ComplexNumbers.Operators.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
