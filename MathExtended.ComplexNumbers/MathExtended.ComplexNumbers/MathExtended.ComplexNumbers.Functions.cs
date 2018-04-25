@@ -26,5 +26,10 @@ namespace Data.Annex.MathExtended.ComplexNumbers
             var _b = new Complex(logBase);
             return _a / _b.Log();
         }
+
+        public double Abs()
+        {
+            return Size;
+        }
     }
 }

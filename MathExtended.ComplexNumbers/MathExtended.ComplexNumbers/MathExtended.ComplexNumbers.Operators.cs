@@ -52,7 +52,7 @@ namespace Data.Annex.MathExtended.ComplexNumbers
 
         public static Complex operator -(double first, Complex second)
         {
-            return new Complex(first - second.Real, second.Imaginary);
+            return new Complex(first - second.Real, -second.Imaginary);
         }
 
         public static Complex operator *(Complex first, Complex second)
