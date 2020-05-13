@@ -4,38 +4,22 @@ namespace Data.Annex.MathExtended.ComplexNumbers
 {
     public partial class Complex
     {
-        private double _real;
-        private double _imaginary;
-        private double _epsilon = 0.001;
-
-        public double Epsilon
-        {
-            get { return _epsilon; }
-            set { _epsilon = value; }
-        }
+        public double Epsilon { get; set; } = 1E-3;
 
         public static Complex Zero
         {
             get { return new Complex(); }
         }
 
-        public double Real
-        {
-            get { return _real; }
-            set { _real = value; }
-        }
+        public double Real { get; set; } = 0;
 
-        public double Imaginary
-        {
-            get { return _imaginary; }
-            set { _imaginary = value; }
-        }
+        public double Imaginary { get; set; } = 0;
 
         public double Size
         {
             get
             {
-                double _size = Math.Pow(_real, 2) + Math.Pow(_imaginary, 2);
+                double _size = Math.Pow(Real, 2) + Math.Pow(Imaginary, 2);
                 return Math.Sqrt(_size);
             }
         }
@@ -44,7 +28,7 @@ namespace Data.Annex.MathExtended.ComplexNumbers
         {
             get
             {
-                return Math.Atan2(_imaginary, _real);
+                return Math.Atan2(Imaginary, Real);
             }
         }
 
@@ -54,8 +38,8 @@ namespace Data.Annex.MathExtended.ComplexNumbers
 
         public Complex(double real, double imaginary)
         {
-            _real = real;
-            _imaginary = imaginary;
+            Real = real;
+            Imaginary = imaginary;
         }
 
         public Complex Conjugate()
@@ -65,10 +49,10 @@ namespace Data.Annex.MathExtended.ComplexNumbers
 
         public void Multiply(Complex factor)
         {
-            double _newReal = this._real * factor._real - this._imaginary * factor._imaginary;
-            double _newImaginary = this._real * factor._imaginary + this.Imaginary * factor._real;
-            _real = _newReal;
-            _imaginary = _newImaginary;
+            double _newReal = this.Real * factor.Real - this.Imaginary * factor.Imaginary;
+            double _newImaginary = this.Real * factor.Imaginary + this.Imaginary * factor.Real;
+            Real = _newReal;
+            Imaginary = _newImaginary;
         }
 
         public void Divide(Complex divisor)
@@ -76,13 +60,13 @@ namespace Data.Annex.MathExtended.ComplexNumbers
             double _divisor = Math.Pow(divisor.Real, 2) + Math.Pow(divisor.Imaginary, 2);
             double _newReal = this.Real * divisor.Real + this.Imaginary * divisor.Imaginary;
             double _newImaginary = this.Real * divisor.Imaginary - this.Imaginary * divisor.Real;
-            _real = _newReal / _divisor;
-            _imaginary = _newImaginary / _divisor;
+            Real = _newReal / _divisor;
+            Imaginary = _newImaginary / _divisor;
         }
 
         public Complex Duplicate()
         {
-            return new Complex(_real, _imaginary);
+            return new Complex(Real, Imaginary);
         }
 
     }

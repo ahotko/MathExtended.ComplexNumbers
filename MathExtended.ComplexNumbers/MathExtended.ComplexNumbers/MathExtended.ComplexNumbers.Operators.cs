@@ -10,10 +10,10 @@ namespace Data.Annex.MathExtended.ComplexNumbers
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Complex operator ~(Complex value)
-        {
-            return new Complex(value.Real, -value.Imaginary);
-        }
+        public static Complex operator ~(Complex value) => new Complex(value.Real, -value.Imaginary);
+
+        public static Complex operator +(Complex number) => number;
+        public static Complex operator -(Complex number) => new Complex(-number.Real, number.Imaginary);
 
         /// <summary>
         /// Addition of two complex numbers
@@ -53,25 +53,17 @@ namespace Data.Annex.MathExtended.ComplexNumbers
 
         public static Complex operator *(Complex first, Complex second)
         {
-            var _result = first.Duplicate();
-            _result.Multiply(second);
-            return _result;
+            return new Complex(first.Real * second.Real - first.Imaginary * second.Imaginary, first.Real * second.Imaginary + first.Imaginary * second.Real);
         }
 
         public static Complex operator *(Complex first, double second)
         {
-            var _result = first.Duplicate();
-            _result.Real *= second;
-            _result.Imaginary *= second;
-            return _result;
+            return first * new Complex(second);
         }
 
         public static Complex operator *(double first, Complex second)
         {
-            var _result = second.Duplicate();
-            _result.Real *= first;
-            _result.Imaginary *= first;
-            return _result;
+            return new Complex(first) * second;
         }
 
         public static Complex operator /(Complex dividend, Complex divisor)
@@ -89,34 +81,33 @@ namespace Data.Annex.MathExtended.ComplexNumbers
             return _dividend;
         }
 
-        public static Boolean operator ==(Complex first, Complex second)
+        public static bool operator ==(Complex first, Complex second)
         {
             return (Math.Abs(first.Real - second.Real) <= first.Epsilon)
                 && (Math.Abs(first.Imaginary - second.Imaginary) <= first.Epsilon);
         }
 
-        public static Boolean operator !=(Complex first, Complex second)
+        public static bool operator !=(Complex first, Complex second)
         {
-            return (Math.Abs(first.Real - second.Real) > first.Epsilon)
-                || (Math.Abs(first.Imaginary - second.Imaginary) > first.Epsilon);
+            return !(first == second);
         }
 
-        public static Boolean operator >(Complex first, Complex second)
+        public static bool operator >(Complex first, Complex second)
         {
             return (first.Size > second.Size);
         }
 
-        public static Boolean operator <(Complex first, Complex second)
+        public static bool operator <(Complex first, Complex second)
         {
             return (first.Size < second.Size);
         }
 
-        public static Boolean operator >=(Complex first, Complex second)
+        public static bool operator >=(Complex first, Complex second)
         {
             return (first.Size >= second.Size);
         }
 
-        public static Boolean operator <=(Complex first, Complex second)
+        public static bool operator <=(Complex first, Complex second)
         {
             return (first.Size <= second.Size);
         }

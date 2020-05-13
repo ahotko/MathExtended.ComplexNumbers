@@ -6,7 +6,7 @@ namespace Data.Annex.MathExtended.ComplexNumbers
     {
         public Complex Log()
         {
-            return new Complex(Math.Log(this.Size), Math.Atan2(_imaginary, _real));
+            return new Complex(Math.Log(this.Size), Math.Atan2(Imaginary, Real));
         }
 
         public Complex Log(Complex logBase)
